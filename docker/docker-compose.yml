@@ -1,0 +1,25 @@
+version: '2'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    build: kafka-docker #folder where Dockerfile is located
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.1.6
+      KAFKA_CREATE_TOPICS: "wiki-changes:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  spark:
+    image: jupyter/all-spark-notebook
+    ports:
+      - "8888:8888"
+      - "4040-4080:4040-4080"
+    links:
+      - "kafka:kafka-server" #allows notebook to discover kafka service by name "kafka-server"
+    volumes:
+      - ../notebooks:/home/jovyan/work/notebooks/
