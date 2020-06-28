@@ -5,7 +5,8 @@ services:
     ports:
       - "2181:2181"
   kafka:
-    build: kafka-docker #folder where Dockerfile is located
+    image: wurstmeister/kafka
+    #build: kafka-docker #folder where Dockerfile is located
     ports:
       - "9092:9092"
     environment:
