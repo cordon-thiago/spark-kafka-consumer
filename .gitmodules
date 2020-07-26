@@ -1,3 +1,0 @@
-[submodule "docker/kafka-docker"]
-	path = docker/kafka-docker
-	url = https://github.com/wurstmeister/kafka-docker
