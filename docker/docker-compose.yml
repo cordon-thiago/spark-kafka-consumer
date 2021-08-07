@@ -15,7 +15,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   spark:
-    image: jupyter/all-spark-notebook
+    image: jupyter/all-spark-notebook:spark-3.1.1
     ports:
       - "8888:8888"
       - "4040-4080:4040-4080"
